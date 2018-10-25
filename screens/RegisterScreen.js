@@ -1,24 +1,17 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image, TouchableHighlight, StatusBar} from 'react-native';
+import {Platform, StyleSheet, Text, View, Image, TouchableHighlight, StatusBar, ScrollView} from 'react-native';
 import { createStackNavigator, navigationOptions } from 'react-navigation';
 // import {FloatingLabel} from 'react-native-floating-labels';
 var FloatingLabel = require('react-native-floating-labels');
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 // const { navigate } = this.props.navigation;
 // type Props = {};
 class RegisterScreen extends Component<Props> {
-  onPressRegistration() {
-  }
-
-  onPressLogin() {
-  }
-
-  registration(){
-  }
 
   render() {
-
     return (
       <View style={styles.containerMain}>
+      <KeyboardAwareScrollView>
         <StatusBar
           barStyle="light-content"
         />
@@ -32,7 +25,7 @@ class RegisterScreen extends Component<Props> {
 
           <TouchableHighlight
             style={[styles.logBtnStyle, {width:59, height:30}]}
-            onPress={()=>this.props.navigation.navigate('TabPage')}>
+            onPress={()=>this.props.navigation.navigate('Login')}>
               <Text style={styles.topBtnTextStyle}>Вход</Text>
           </TouchableHighlight>
 
@@ -62,16 +55,18 @@ class RegisterScreen extends Component<Props> {
 
           <FloatingLabel
             labelStyle={styles.labelInput}
-            inputStyle={styles.input}>
+            inputStyle={styles.input}
+            keyboardType='number-pad'>
               Телефон</FloatingLabel>
         </View>
         <View style={{marginTop: 26, justifyContent: 'center', alignItems: 'center'}}>
           <TouchableHighlight
             style={[styles.bottomBtnStyle]}
-            onPress={this.registration}>
+            onPress={()=> this.props.navigation.navigate('TabPage')}>
               <Text style={styles.bottomBtnTextStyle}>Зарегистрироваться</Text>
           </TouchableHighlight>
         </View>
+      </KeyboardAwareScrollView>
       </View>
     );
   }

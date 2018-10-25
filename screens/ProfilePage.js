@@ -2,23 +2,15 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Image, TouchableHighlight, StatusBar} from 'react-native';
 import { createStackNavigator, navigationOptions } from 'react-navigation';
 // import {FloatingLabel} from 'react-native-floating-labels';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 var FloatingLabel = require('react-native-floating-labels');
 
 type Props = {};
 class ProfilePage extends Component<Props> {
-  onPressRegistration() {
-  }
-
-  onPressLogin() {
-  }
-
-  registration(){
-  }
-
   render() {
-    
     return (
       <View style={styles.containerMain}>
+      <KeyboardAwareScrollView>
         <Text style={styles.topText}>Профиль</Text>
         <View style={styles.containerCenter}>
           <Image style={styles.profileImage} source={require('../img/photo.png')}></Image>
@@ -64,7 +56,8 @@ class ProfilePage extends Component<Props> {
               onPress={this.registration}>
                 <Text style={styles.bottomBtnTextStyle}>Ответственность: 23 предмета</Text>
             </TouchableHighlight>
-        </View>             
+        </View>
+      </KeyboardAwareScrollView>             
       </View>
     );
   }
@@ -98,11 +91,10 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 20,
     marginLeft: 15
-    // marginBottom: 10
   },
   labelInput: {
     color: '#B9B9B9',
-    marginLeft: 15
+    marginLeft: 15,
   },
   backgroundInput: {
     backgroundColor: '#FBFBFB',

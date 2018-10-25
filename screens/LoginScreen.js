@@ -1,24 +1,15 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Image, TouchableHighlight, StatusBar} from 'react-native';
 import { createStackNavigator, navigationOptions } from 'react-navigation';
-// import {FloatingLabel} from 'react-native-floating-labels';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 var FloatingLabel = require('react-native-floating-labels');
 
 type Props = {};
 class LoginScreen extends Component<Props> {
-  onPressRegistration() {
-  }
-
-  onPressLogin() {
-  }
-
-  registration(){
-  }
-
   render() {
-    
     return (
       <View style={styles.containerMain}>
+      <KeyboardAwareScrollView>
         <StatusBar
           barStyle="light-content"
         />
@@ -26,14 +17,14 @@ class LoginScreen extends Component<Props> {
 
           <TouchableHighlight
             style={[styles.regBtnStyle, {width:106, height:30}]}
-            onPress={this.onPressRegistration}>
-              <Text style={[styles.topBtnTextStyle, {color: '#616161'}]}>Регистрация</Text>
+            onPress={()=>this.props.navigation.navigate('Register')}>
+              <Text style={styles.topBtnTextStyle}>Регистрация</Text>
           </TouchableHighlight>
 
           <TouchableHighlight
             style={[styles.logBtnStyle, {width:59, height:30}]}
             onPress={this.onPressLogin}>
-              <Text style={styles.topBtnTextStyle}>Вход</Text>
+              <Text style={[styles.topBtnTextStyle, {color: '#616161'}]}>Вход</Text>
           </TouchableHighlight>
 
         </View>
@@ -44,11 +35,6 @@ class LoginScreen extends Component<Props> {
           />
         </View>
         <View style={styles.inputContainer}>
-          <FloatingLabel 
-            labelStyle={styles.labelInput}
-            inputStyle={styles.input}>
-              Имя</FloatingLabel>
-
           <FloatingLabel
             labelStyle={styles.labelInput}
             inputStyle={styles.input}>
@@ -60,18 +46,16 @@ class LoginScreen extends Component<Props> {
             secureTextEntry={true}>
               Пароль</FloatingLabel>
 
-          <FloatingLabel
-            labelStyle={styles.labelInput}
-            inputStyle={styles.input}>
-              Телефон</FloatingLabel>
+          <Text style={{color: '#42BCF8', fontSize: 16, marginLeft: 9, marginTop: 28}}>Забыли пароль ?</Text>
         </View>
-        <View style={{marginTop: 26, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{marginTop: 80, justifyContent: 'center', alignItems: 'center'}}>
           <TouchableHighlight
             style={[styles.bottomBtnStyle]}
-            onPress={this.registration}>
-              <Text style={styles.bottomBtnTextStyle}>Зарегистрироваться</Text>
+            onPress={()=> this.props.navigation.navigate('TabPage')}>
+              <Text style={styles.bottomBtnTextStyle}>Войти</Text>
           </TouchableHighlight>
         </View>
+        </KeyboardAwareScrollView>
       </View>
     );
   }
@@ -98,20 +82,14 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   logBtnStyle: {
-    // backgroundColor: 'black'
-    // marginRight:40,
-    // marginLeft:40,
-    // marginTop:10,
-    // paddingTop:20,
-    // paddingBottom:20,
+    justifyContent: 'center', 
+    alignItems: 'center'  
+  },
+  regBtnStyle: {
     backgroundColor: 'black',
     borderRadius: 16,
     borderWidth: 1,
     borderColor: '#35CEF1',
-    justifyContent: 'center', 
-    alignItems: 'center' 
-  },
-  regBtnStyle: {
     justifyContent: 'center', 
     alignItems: 'center' 
   },
@@ -150,5 +128,6 @@ const styles = StyleSheet.create({
     marginTop: 48,
     marginLeft: 30,
     marginRight: 30
-  }
+  },
+
 });
